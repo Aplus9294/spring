@@ -4,8 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 	<!-- 拦截器对象 -->
-	<bean id="methodBeforeAdviceImpl"
-		class="com.helloweenvsfei.spring.example.MethodBeforeAdviceImpl">
+	<bean id="methodBeforeAdviceImpl" class="com.KevinZach.spring.example.MethodBeforeAdviceImpl">
 	</bean>
 
 	<!-- 配置拦截器 -->
@@ -20,38 +19,17 @@
 	</bean>
 
 	<!-- dao 实例 -->
-	<bean id="dao" class="com.helloweenvsfei.spring.example.DaoImpl">
+	<bean id="dao" class="com.KevinZach.spring.example.DaoImpl">
 	</bean>
 
 	<!-- service 实例 -->
-	<bean id="serviceImpl"
-		class="com.helloweenvsfei.spring.example.ServiceImpl">
-		<!-- 
-			<property name="dao" ref="dao"></property>
-			<property name="dao">
-			<ref bean="dao" />
-			</property>
-		-->
+	<bean id="serviceImpl" class="com.KevinZach.spring.example.ServiceImpl">
 		<property name="dao">
-			<bean class="com.helloweenvsfei.spring.example.DaoImpl"></bean>
+			<bean class="com.KevinZach.spring.example.DaoImpl"></bean>
 		</property>
-		<!-- 
-			<property name="someMap">
-			<map>
-			<entry key="yup an entry">
-			<value>just some string</value>
-			</entry>
-			<entry key-ref="myDataSource">
-			<ref bean="myDataSource" />
-			</entry>
-			</map>
-			</property>
-		-->
-
 	</bean>
 
-	<bean id="service"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<!-- 拦截器 -->
 		<property name="interceptorNames" value="theAdvisor"></property>
 		<!-- 被拦截的对象 -->
@@ -60,25 +38,13 @@
 		</property>
 	</bean>
 
-	<!-- 
-		<bean id="a" class="examples.A" depends-on="b"></bean>
-		<bean id="b" class="examples.B"></bean>
-		<bean id="c" class="examples.C" init-method="init"></bean>
-		<bean id="d" class="examples.D" autowire="byType"></bean>
-	-->
+	<!-- Spring的AOP模块开始处 -->
 
-	<!-- 
-		<bean id="bean" class="examples.Bean" dependency-check="all"></bean>
-	-->
-	
-<!-- Spring的AOP模块开始处  -->	
- 
 	<!-- 拦截器 在 withAop() 方法前运行 -->
 	<bean id="aopMethodBeforeInterceptor"
 		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
 		<property name="advice">
-			<bean
-				class="com.helloweenvsfei.spring.aop.MethodBeforeInterceptor" />
+			<bean class="com.KevinZach.spring.aop.MethodBeforeInterceptor" />
 		</property>
 		<property name="mappedName" value="withAop"></property>
 	</bean>
@@ -87,8 +53,7 @@
 	<bean id="aopMethodAfterInterceptor"
 		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
 		<property name="advice">
-			<bean
-				class="com.helloweenvsfei.spring.aop.MethodAfterInterceptor" />
+			<bean class="com.KevinZach.spring.aop.MethodAfterInterceptor" />
 		</property>
 		<property name="mappedName" value="withAop"></property>
 	</bean>
@@ -97,14 +62,12 @@
 	<bean id="aopThrowsInterceptor"
 		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
 		<property name="advice">
-			<bean
-				class="com.helloweenvsfei.spring.aop.ThrowsInterceptor" />
+			<bean class="com.KevinZach.spring.aop.ThrowsInterceptor" />
 		</property>
 		<property name="mappedName" value="withAop"></property>
 	</bean>
 
-	<bean id="aopService"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean id="aopService" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<!-- 拦截器 -->
 		<property name="interceptorNames">
 			<list>
@@ -115,19 +78,17 @@
 		</property>
 		<!-- 被拦截的对象 -->
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.spring.aop.AopServiceImpl">
-					<property name="name" value="Helloween"></property>
+			<bean class="com.KevinZach.spring.aop.AopServiceImpl">
+				<property name="name" value="Helloween"></property>
 			</bean>
 		</property>
 	</bean>
 
-<!-- Spring的AOP模块结束处  -->	
+	<!-- Spring的AOP模块结束处 -->
 
-<!-- Spring的DAO模块开始处  -->	<!-- Spring的ORM模块开始处1  -->
+	<!-- Spring的DAO模块开始处 -->	<!-- Spring的ORM模块开始处1 -->
 
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
@@ -135,11 +96,10 @@
 		<property name="username" value="root" />
 		<property name="password" value="78711116814ZKybb" />
 	</bean>
-	
-								<!-- Spring的ORM模块结束处1  -->
-								
-	<bean id="personDao"
-		class="com.helloweenvsfei.spring.dao.PersonDaoImpl"
+
+	<!-- Spring的ORM模块结束处1 -->
+
+	<bean id="personDao" class="com.KevinZach.spring.dao.PersonDaoImpl"
 		depends-on="dataSource" init-method="initDatabase">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
@@ -160,41 +120,33 @@
 		</property>
 	</bean>
 
-	<!-- 
-		<bean id="transactionRun"
-		class="com.helloweenvsfei.spring.dao.TransactionRun">
-		<property name="personDao" ref="personDao"></property>
-		</bean>
-	-->
+	<!-- <bean id="transactionRun" class="com.helloweenvsfei.spring.dao.TransactionRun"> 
+		<property name="personDao" ref="personDao"></property> </bean> -->
 
 	<!-- TransactionRun -->
 	<bean id="transactionRun"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"
-			ref="jdbcTransactionManager" />
+		<property name="transactionManager" ref="jdbcTransactionManager" />
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.spring.dao.TransactionRun">
+			<bean class="com.KevinZach.spring.dao.TransactionRun">
 				<property name="personDao" ref="personDao"></property>
 			</bean>
 		</property>
-		<property name="transactionAttributeSource"
-			ref="transactionAttributeSource" />
+		<property name="transactionAttributeSource" ref="transactionAttributeSource" />
 	</bean>
-	
-<!-- Spring的DAO模块结束处  -->	<!-- Spring的ORM模块开始处2  -->
+
+	<!-- Spring的DAO模块结束处 -->	<!-- Spring的ORM模块开始处2 -->
 
 	<!-- Spring SessionFactory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
 		destroy-method="destroy">
 		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedPackages"
-			value="classpath:/com/helloweenvsfei/spring/orm">
+		<property name="annotatedPackages" value="classpath:/com/KevinZach/spring/orm">
 		</property>
 		<property name="annotatedClasses">
 			<list>
-				<value>com.helloweenvsfei.spring.orm.Cat</value>
+				<value>com.KevinZach.spring.orm.Cat</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -209,14 +161,13 @@
 		</property>
 	</bean>
 
-	<bean id="catDao"
-		class="com.helloweenvsfei.spring.orm.CatDaoImpl">
+	<bean id="catDao" class="com.KevinZach.spring.orm.CatDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
-								<!-- Spring的ORM模块结束处2  -->
-								
-								<!-- Spring的ORM模块开始处3  -->
+
+	<!-- Spring的ORM模块结束处2 -->
+
+	<!-- Spring的ORM模块开始处3 -->
 
 	<bean id="hibernateTransactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -234,34 +185,27 @@
 
 	<bean id="catService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-		<property name="transactionManager"
-			ref="hibernateTransactionManager">
+		<property name="transactionManager" ref="hibernateTransactionManager">
 		</property>
 		<property name="target">
-			<bean
-				class="com.helloweenvsfei.spring.orm.CatServiceImpl">
+			<bean class="com.KevinZach.spring.orm.CatServiceImpl">
 				<property name="catDao" ref="catDao"></property>
 			</bean>
 		</property>
-		<property name="transactionAttributeSource"
-			ref="hibernateTransactionAttributeSource">
+		<property name="transactionAttributeSource" ref="hibernateTransactionAttributeSource">
 		</property>
 	</bean>
-	
-								<!-- Spring的ORM模块结束处3  -->
 
-	<!-- 
-		<bean name="/cat2" class="com.helloweenvsfei.spring.action.Cat2Action">
-		<property name="catService" ref="catService"></property>
-		</bean>
-	-->
+	<!-- Spring的ORM模块结束处3 -->
+
+	<!-- <bean name="/cat2" class="com.helloweenvsfei.spring.action.Cat2Action"> 
+		<property name="catService" ref="catService"></property> </bean> -->
 
 
 	<bean id="cat2BeforeInterceptor"
 		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
 		<property name="advice">
-			<bean
-				class="com.helloweenvsfei.spring.aop.MethodBeforeInterceptor" />
+			<bean class="com.KevinZach.spring.aop.MethodBeforeInterceptor" />
 		</property>
 		<property name="mappedName" value="*"></property>
 	</bean>
@@ -269,14 +213,12 @@
 	<bean id="cat2AfterInterceptor"
 		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
 		<property name="advice">
-			<bean
-				class="com.helloweenvsfei.spring.aop.MethodAfterInterceptor" />
+			<bean class="com.KevinZach.spring.aop.MethodAfterInterceptor" />
 		</property>
 		<property name="mappedName" value="*"></property>
 	</bean>
 
-	<bean name="/cat2"
-		class="org.springframework.aop.framework.ProxyFactoryBean">
+	<bean name="/cat2" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<!-- 拦截器 -->
 		<property name="interceptorNames">
 			<list>
@@ -286,7 +228,7 @@
 		</property>
 		<!-- 被拦截的对象 -->
 		<property name="target">
-			<bean class="com.helloweenvsfei.spring.action.Cat2Action">
+			<bean class="com.KevinZach.spring.action.Cat2Action">
 				<property name="catService" ref="catService"></property>
 			</bean>
 		</property>
@@ -295,7 +237,7 @@
 
 	<!-- Struts 2 里的 Action 对象 -->
 	<bean id="catAction" scope="prototype"
-		class="com.helloweenvsfei.spring.struts2.CatAction">
+		class="com.KevinZach.spring.struts2.CatAction">
 		<property name="catService" ref="catService"></property>
 	</bean>
 

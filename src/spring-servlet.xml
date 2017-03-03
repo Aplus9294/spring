@@ -37,7 +37,7 @@
 	</bean>
 
 	<bean id="catController"
-		class="com.helloweenvsfei.spring.mvc.CatController">
+		class="com.KevinZach.spring.mvc.CatController">
 		<property name="catService" ref="catService"></property>
 	</bean>
 
@@ -52,7 +52,7 @@
 	</bean>
 	
 	<bean id="catMultiController"
-		class="com.helloweenvsfei.spring.mvc.CatMultiController">
+		class="com.KevinZach.spring.mvc.CatMultiController">
 		<property name="catService" ref="catService"></property>
 	</bean>
 
