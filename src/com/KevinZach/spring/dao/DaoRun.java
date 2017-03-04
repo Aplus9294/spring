@@ -9,17 +9,16 @@ import org.springframework.core.io.ClassPathResource;
 public class DaoRun {
 
 	public static void main(String args[]) {
-
+		
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 
 		IPersonDao personDao = (IPersonDao) factory.getBean("personDao");
 
 		Person person = new Person();
-		person.setName("’≈ø≠");
-		person.setAge(25);
-		person.setSex("ƒ–");
+		person.setName("Œ‚œÙ");
+		person.setAge(26);
+		person.setSex("≈Æ");
 		person.setBirthday(new Date());
-
 		personDao.addPerson(person);
 
 		System.out.println("Count: " + personDao.getPersonsCount());
@@ -31,8 +30,6 @@ public class DaoRun {
 		for (Person p : personList) {
 			System.out.println("Name: " + p.getName());
 		}
-
-		// personDao.testTransactions();
 	}
 
 }

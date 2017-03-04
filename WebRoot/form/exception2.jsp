@@ -3,7 +3,7 @@
 
 <html>
 	<head>
-		<title>JSP for CatForm form</title>
+		<title>JSP for WifeForm form</title>
 		<style>
 		body, input {font-size: 12px; }
 		</style>

@@ -21,16 +21,16 @@ public class TransactionRun {
 	public void run() {
 
 		Person person = new Person();
-		person.setName("事务回滚");
-		person.setAge(25);
-		person.setSex("男");
+		person.setName("方艺蒙");
+		person.setAge(22);
+		person.setSex("女");
 		person.setBirthday(new Date());
-
+		
 		personDao.addPerson(person);
 
 		System.out.println("Count: " + personDao.getPersonsCount());
 
-		System.out.println(personDao.getPersonName(Integer.MAX_VALUE));
+		// System.out.println(personDao.getPersonName(Integer.MAX_VALUE));
 
 		List<Person> personList = personDao.findAllPersons();
 

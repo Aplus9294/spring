@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="/struts-tags" prefix="struts"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <title>JSP for WifeForm form</title>
@@ -23,24 +22,19 @@ th, td {
 </head>
 <body>
 
-	<struts:form action="add_wife">
-		<struts:textfield name="wife.name" label="名字" value="" />
-		<struts:submit value=" 添加 "></struts:submit>
-	</struts:form>
-
 	<table>
 		<tr>
 			<th>ID</th>
-			<th>Name</th>
-			<th>CreateDate</th>
+			<th>名称</th>
+			<th>创建日期</th>
 		</tr>
-		<struts:iterator value="wifeList">
+		<c:forEach items="${ wifeList }" var="wife">
 			<tr>
-				<td><struts:property value="id" /></td>
-				<td><struts:property value="name" /></td>
-				<td><struts:property value="createdDate" /></td>
+				<td>${ wife.id }</td>
+				<td>${ wife.name }</td>
+				<td>${ wife.createdDate }</td>
 			</tr>
-		</struts:iterator>
+		</c:forEach>
 	</table>
 
 </body>

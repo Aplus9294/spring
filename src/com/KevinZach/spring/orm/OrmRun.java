@@ -12,17 +12,17 @@ public class OrmRun {
 
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
 
-		ICatDao catDao = (ICatDao) factory.getBean("catDao");
+		IWifeDao wifeDao = (IWifeDao) factory.getBean("wifeDao");
 
-		Cat cat = new Cat();
-		cat.setName("Hello Kitty");
-		cat.setCreatedDate(new Date());
+		Wife wife = new Wife();
+		wife.setName("ÖìÊ«Âþ");
+		wife.setCreatedDate(new Date());
 
-		catDao.createCat(cat);
+		wifeDao.createWife(wife);
 
-		List<Cat> catList = catDao.listCats();
+		List<Wife> wifeList = wifeDao.listWives();
 
-		for (Cat c : catList) {
+		for (Wife c : wifeList) {
 			System.out.println("Name: " + c.getName());
 		}
 
