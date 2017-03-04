@@ -213,11 +213,11 @@
 		</list>
 		</property>
 		<!-- 被拦截的对象 -->
-		<property name="target">
-			<bean class="com.KevinZach.spring.action.Wife2Action">
-				<property name="wifeService" ref="wifeService"></property>
-			</bean>
-		</property>
+<!-- 		<property name="target"> -->
+<!-- 			<bean class="com.KevinZach.spring.action.Wife2Action"> -->
+<!-- 				<property name="wifeService" ref="wifeService"></property> -->
+<!-- 			</bean> -->
+<!-- 		</property> -->
 	</bean>
 
 	<!-- Struts2 里的 Action 对象 -->

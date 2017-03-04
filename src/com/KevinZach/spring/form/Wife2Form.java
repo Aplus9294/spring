@@ -19,11 +19,6 @@ import org.apache.struts.action.ActionMapping;
  */
 public class Wife2Form extends ActionForm {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6722849937044408207L;
-
 	private String name;
 
 	private String action;

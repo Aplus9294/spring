@@ -17,14 +17,6 @@ import org.apache.struts.action.ActionMapping;
  * @struts.form name="employeeForm"
  */
 public class WifeForm extends ActionForm {
-	/*
-	 * Generated Methods
-	 */
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2792401844705248473L;
 
 	private String name;
 
